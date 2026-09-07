@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.4.0] - Unreleased
+
+### Added
+- municipality point endpoint backed by pinned Libya Locations v1.2.0 data
+- GeoJSON proxy endpoint for municipality reference points
+- nearest mapped municipality helper using Haversine distance
+- nearby municipality radius search with bounded radius and result limits
+- explicit mapped/total coverage metadata without guessing missing coordinates
+- JavaScript source SDK with Node tests
+- Python source SDK using the standard library with unittest coverage
+- Dart/Flutter source SDK with HTTP client injection and tests
+- independent SDK Quality GitHub Actions workflow
+- Geo and SDK documentation in English and Arabic
+- OpenAPI 0.4.0 Geo contract
+
 ## [0.3.0] - 2026-09-07
 
 ### Added
@@ -25,10 +40,8 @@
 - bank search by Arabic/English name, city or stable slug
 - bank lookup endpoint by slug
 - public-holiday calendar based on Law No. 5 of 2012
-- sourced 2026 confirmations for Eid al-Fitr, Arafah/Eid al-Adha, Hijri New Year and the Prophet's Birthday
+- sourced 2026 confirmations for religious holidays
 - explicit `requires_annual_confirmation` handling for future religious dates
-- bank and holiday OpenAPI documentation
-- feature tests for bank search/filtering and holiday integrity
 
 ## [0.1.0] - 2026-09-07
 
@@ -36,12 +49,9 @@
 - API-first Laravel 13 foundation
 - versioned `/api/v1` routes
 - pinned Libya Locations v1.2.0 integration
-- municipality/city search in Arabic, English and stable slugs
+- municipality/city search
 - Libyan mobile normalization and validation
-- telecom operator prefix metadata with source provenance and verification strength
-- OpenAPI 3.1 contract + Swagger UI
-- public CORS, caching and API rate limiting
-- structured source-unavailable responses for pinned location data
-- Arabic project documentation and contribution/data-source guidance
-- committed `composer.lock` for reproducible installs
-- PHPUnit feature suite + Laravel Pint CI
+- telecom operator prefix metadata with provenance
+- OpenAPI + Swagger UI
+- rate limiting, caching and CORS
+- PHPUnit + Laravel Pint CI

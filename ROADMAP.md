@@ -2,36 +2,44 @@
 
 ## v0.1 — Core developer API
 - [x] Locations bridge to Libya Locations v1.2.0
-- [x] Phone normalization
-- [x] Phone validation and operator-range metadata
-- [x] Telecom operator endpoint
-- [x] OpenAPI 3.1 + Swagger UI
+- [x] Phone normalization and validation
+- [x] Telecom operator metadata
+- [x] OpenAPI + Swagger
 - [x] Rate limiting, caching, CORS
 - [x] Tests + CI
 
-## v0.2 — Libya business + calendar primitives
-- [x] commercial bank directory from the Central Bank of Libya
+## v0.2 — Libya business + holiday primitives
+- [x] Central Bank commercial bank directory
 - [x] Arabic/English bank search and stable slugs
-- [x] public-holiday definitions from Law No. 5 of 2012
+- [x] statutory holiday definitions
 - [x] sourced 2026 religious-holiday dates
-- [x] explicit `requires_annual_confirmation` status instead of guessing future religious dates
-- [x] OpenAPI and regression tests for banks/holidays
+- [x] no guessing for future unconfirmed religious dates
 
-## v0.3 — Location developer experience
-- municipality map points and GeoJSON proxy endpoints
-- bounding-box / nearby helpers where source quality permits
+## v0.3 — Finance + business calendar
+- [x] live official CBL exchange rates
+- [x] buy/sell/average and normalized per-unit values
+- [x] currency conversion
+- [x] Sunday–Thursday general public-sector business calendar
+- [x] next/range business-day helpers
+
+## v0.4 — Geo + SDK developer experience
+- [x] municipality point proxy from pinned Libya Locations release
+- [x] GeoJSON endpoint
+- [x] nearest municipality helper
+- [x] nearby/radius helper
+- [x] JavaScript source SDK + tests
+- [x] Python source SDK + tests
+- [x] Dart/Flutter source SDK + tests
+- [x] independent SDK CI quality gate
+
+## Next
 - conditional requests / ETags for public datasets
-- SDK snippets generated from OpenAPI
-
-## v0.4 — More Libya developer primitives
-- currency/IBAN helpers only where official validation rules are available
-- bank branch/routing metadata only if a maintainable primary source exists
-- government/administrative identifiers only where publication is appropriate and source-backed
+- generated typed models from OpenAPI
+- registry publication strategy for npm, PyPI and pub.dev
+- hosted public deployment + uptime/status page
+- TypeScript-first generated client once the API contract stabilizes further
 
 ## Later
-- postal/address normalization if a reliable source exists
-- Laravel package client
-- TypeScript SDK
-- Dart/Flutter SDK
-- Python client
-- hosted public deployment and uptime/status page
+- postal/address normalization only if a reliable source exists
+- IBAN helpers only where official Libyan validation rules are available
+- bank branch/routing metadata only with a maintainable primary source

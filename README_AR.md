@@ -1,45 +1,54 @@
 # Libya Dev API 🇱🇾
 
-**واجهة API مفتوحة للمطورين في ليبيا**، هدفها تجمع البيانات والأدوات الليبية المتكررة تحت عقد HTTP/JSON واحد يمكن استخدامه من أي لغة أو framework.
+**واجهة API مفتوحة للمطورين في ليبيا** تجمع بيانات وأدوات ليبية قابلة للاستخدام من أي لغة عبر HTTP/JSON.
 
 ## النطاق الحالي
 
 - البلديات والمدن من `Libya Locations v1.2.0`
-- بحث بالعربي أو الإنجليزي أو `slug`
-- توحيد أرقام الهاتف الليبية إلى الصيغة المحلية و`+218`
-- التحقق من صيغة أرقام المحمول والنطاقات المعروفة
-- بيانات مشغلي الاتصالات مع المصدر ودرجة التحقق
-- **دليل 26 مصرفًا تجاريًا من دليل مصرف ليبيا المركزي**
-- البحث في المصارف بالاسم العربي أو الإنجليزي أو المدينة أو `slug`
-- **تقويم العطلات الرسمية في ليبيا** بالاعتماد على القانون رقم 5 لسنة 2012
-- تواريخ العطلات الدينية المؤكدة لسنة 2026 مع مصدر القرار/الإعلان
-- أي تاريخ ديني لسنة أخرى لا يتم تخمينه؛ يرجع `null` إلى أن يتوفر تأكيد رسمي
-- OpenAPI + Swagger UI
-- Rate limiting + caching + CORS
-- Tests وGitHub Actions
+- **Municipality Points + GeoJSON** من نفس الإصدار المثبت
+- **Nearest / Nearby** لحساب أقرب البلديات ذات الإحداثيات باستخدام Haversine
+- البلدية التي لا يوجد لها coordinate موثوق تبقى `null` ولا يتم تخمينها
+- توحيد والتحقق من أرقام الهاتف الليبية
+- بيانات مشغلي الاتصالات ومصادرها
+- دليل 26 مصرفًا تجاريًا من مصرف ليبيا المركزي
+- تقويم العطلات الرسمية
+- أسعار الصرف الرسمية من مصرف ليبيا المركزي + Currency Converter
+- Business Day helpers
+- **SDKs جاهزة كمصدر لـJavaScript وPython وDart/Flutter**
+- OpenAPI + Swagger + Tests + GitHub Actions
 
-### Endpoints الجديدة
+### Geo API
 
 ```text
-GET /api/v1/banks
-GET /api/v1/banks/{slug}
-GET /api/v1/holidays
-GET /api/v1/holidays/{year}
+GET /api/v1/geo/municipality-points
+GET /api/v1/geo/municipalities.geojson
+GET /api/v1/geo/nearest?lat=32.8872&lng=13.1913
+GET /api/v1/geo/nearby?lat=32.8872&lng=13.1913&radius_km=50
 ```
 
-مثال:
+### SDK مثال
 
-```bash
-curl 'http://localhost:8000/api/v1/banks?q=النوران'
-curl 'http://localhost:8000/api/v1/holidays/2026'
+JavaScript:
+
+```js
+const api = new LibyaDevApi({baseUrl: 'https://your-host.ly/api/v1'});
+const result = await api.nearestMunicipalities(32.8872, 13.1913);
 ```
 
-في العطلات نفرق بين:
+Python:
 
-- `confirmed_official_decision`: التاريخ السنوي مؤكد بمصدر رسمي/موثوق
-- `statutory_fixed_date`: التاريخ ثابت بنص قانون العطلات
-- `requires_annual_confirmation`: التاريخ الديني يحتاج تأكيد سنوي ولا يتم تخمينه
+```python
+api = LibyaDevApi('https://your-host.ly/api/v1')
+result = api.nearest_municipalities(32.8872, 13.1913)
+```
 
-Laravel هو الـbackend فقط. أي تطبيق Flutter أو React أو Python أو Java أو .NET أو Swift يقدر يستهلك الـAPI مباشرة.
+Flutter / Dart:
 
-> تحديد مشغل الهاتف مبني على prefix/range، وليس استعلامًا مباشرًا عن مالك الرقم أو المشغل الحالي للمشترك.
+```dart
+final api = LibyaDevApi(baseUrl: 'https://your-host.ly/api/v1');
+final result = await api.nearestMunicipalities(32.8872, 13.1913);
+```
+
+تفاصيل التثبيت من GitHub موجودة في [`sdks/README.md`](sdks/README.md). نشر الحزم على npm/PyPI/pub.dev خطوة منفصلة، لذلك لا ندعي وجود package منشورة قبل ربطها رسميًا في README.
+
+Laravel هو الـbackend فقط؛ استهلاك الـAPI لا يحتاج PHP أو Laravel.
