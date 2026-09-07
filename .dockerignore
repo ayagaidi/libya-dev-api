@@ -1,0 +1,10 @@
+.git
+.github
+.env
+.env.*
+vendor
+node_modules
+storage/logs/*
+docs
+sdks
+tests
