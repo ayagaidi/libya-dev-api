@@ -1,8 +1,14 @@
+<p align="center">
+  <img src="docs/assets/libya-dev-api-banner.svg" alt="Libya Dev API banner" width="100%">
+</p>
+
 # Libya Dev API 🇱🇾
 
 > **The open developer API for Libya.** One stable HTTP/JSON interface for Libya-specific locations, phone normalization, telecom metadata and future developer primitives.
 
+[![Release](https://img.shields.io/github/v/release/ayagaidi/libya-dev-api?label=release)](https://github.com/ayagaidi/libya-dev-api/releases/latest)
 [![Laravel Quality](https://github.com/ayagaidi/libya-dev-api/actions/workflows/tests.yml/badge.svg)](https://github.com/ayagaidi/libya-dev-api/actions/workflows/tests.yml)
+[![License](https://img.shields.io/github/license/ayagaidi/libya-dev-api)](LICENSE)
 
 **Laravel 13 · REST · OpenAPI 3.1 · JSON · Cache · Rate limiting · Tests · CI**
 
