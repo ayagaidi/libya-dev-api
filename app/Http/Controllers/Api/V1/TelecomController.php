@@ -8,9 +8,7 @@ use Illuminate\Http\JsonResponse;
 
 class TelecomController extends Controller
 {
-    public function __construct(private readonly LibyaPhoneService $phones)
-    {
-    }
+    public function __construct(private readonly LibyaPhoneService $phones) {}
 
     public function operators(): JsonResponse
     {

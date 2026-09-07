@@ -9,9 +9,7 @@ use Illuminate\Http\Request;
 
 class PhoneController extends Controller
 {
-    public function __construct(private readonly LibyaPhoneService $phones)
-    {
-    }
+    public function __construct(private readonly LibyaPhoneService $phones) {}
 
     public function normalize(Request $request): JsonResponse
     {

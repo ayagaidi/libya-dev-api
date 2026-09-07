@@ -10,9 +10,7 @@ use RuntimeException;
 
 class LocationController extends Controller
 {
-    public function __construct(private readonly LocationDatasetService $locations)
-    {
-    }
+    public function __construct(private readonly LocationDatasetService $locations) {}
 
     public function municipalities(Request $request): JsonResponse
     {
