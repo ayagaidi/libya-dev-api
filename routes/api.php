@@ -1,0 +1,24 @@
+<?php
+
+use App\Http\Controllers\Api\V1\LocationController;
+use App\Http\Controllers\Api\V1\MetaController;
+use App\Http\Controllers\Api\V1\PhoneController;
+use App\Http\Controllers\Api\V1\TelecomController;
+use Illuminate\Support\Facades\Route;
+
+Route::prefix('v1')->middleware('throttle:api')->group(function (): void {
+    Route::get('/meta', MetaController::class);
+
+    Route::prefix('locations')->group(function (): void {
+        Route::get('/municipalities', [LocationController::class, 'municipalities']);
+        Route::get('/municipalities/{slug}', [LocationController::class, 'municipality']);
+        Route::get('/cities', [LocationController::class, 'cities']);
+    });
+
+    Route::prefix('phone')->group(function (): void {
+        Route::post('/normalize', [PhoneController::class, 'normalize']);
+        Route::post('/validate', [PhoneController::class, 'validateNumber']);
+    });
+
+    Route::get('/telecom/operators', [TelecomController::class, 'operators']);
+});
