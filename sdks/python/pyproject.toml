@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "libya-dev-api-client"
-version = "0.4.0"
+version = "0.5.0"
 description = "Python client for Libya Dev API, including locations, Geo, telecom, banks, holidays, exchange rates and business-calendar helpers."
 readme = "README.md"
 requires-python = ">=3.9"

@@ -1,12 +1,13 @@
 {
   "name": "libya-dev-api-client",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "JavaScript client for Libya Dev API, including locations, Geo, telecom, banks, holidays, exchange rates and business-calendar helpers.",
   "type": "module",
   "exports": "./src/index.js",
   "files": [
     "src",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
     "test": "node --test"

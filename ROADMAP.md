@@ -32,11 +32,22 @@
 - [x] Dart/Flutter source SDK + tests
 - [x] independent SDK CI quality gate
 
+## v0.5 — Hosted API + package distribution
+- [x] production Docker image
+- [x] Railway config-as-code + `/health`
+- [x] container build/smoke-test CI
+- [x] registry-ready JavaScript, Python and Dart package metadata
+- [x] npm / PyPI / pub.dev publishing workflows
+- [x] publishability checks in SDK CI
+- [ ] public Railway deployment with stable HTTPS URL
+- [ ] first npm publication
+- [ ] first PyPI publication
+- [ ] first pub.dev publication
+
 ## Next
 - conditional requests / ETags for public datasets
 - generated typed models from OpenAPI
-- registry publication strategy for npm, PyPI and pub.dev
-- hosted public deployment + uptime/status page
+- uptime/status page for hosted deployment
 - TypeScript-first generated client once the API contract stabilizes further
 
 ## Later

@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.5.0] - Unreleased
+
+### Added
+- production Docker image for hosted API deployments
+- Railway config-as-code and deployment guide
+- lightweight `/health` readiness endpoint
+- deployment CI that builds the production image and smoke-tests health, API metadata and OpenAPI
+- registry-ready metadata and package documentation for JavaScript, Python and Dart/Flutter SDKs
+- dedicated npm, PyPI and pub.dev publishing workflows
+- OIDC / Trusted Publishing flows where supported instead of long-lived registry tokens
+- package licenses and Dart package changelog/example metadata
+- SDK publishability gates: `npm pack --dry-run`, Python wheel/sdist build and `dart pub publish --dry-run`
+
+### Changed
+- SDK package versions move to `0.5.0` so registry artifacts map to the code that actually prepares and publishes them
+
 ## [0.4.0] - 2026-09-07
 
 ### Added
