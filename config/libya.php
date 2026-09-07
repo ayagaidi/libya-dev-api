@@ -19,6 +19,7 @@ return [
         'municipalities_url' => 'https://raw.githubusercontent.com/ayagaidi/libyancityseeds/v1.2.0/data/municipalities.json',
         'cities_url' => 'https://raw.githubusercontent.com/ayagaidi/libyancityseeds/v1.2.0/data/cities.json',
         'points_url' => 'https://raw.githubusercontent.com/ayagaidi/libyancityseeds/v1.2.0/data/municipality-points.json',
+        'geojson_url' => 'https://raw.githubusercontent.com/ayagaidi/libyancityseeds/v1.2.0/data/municipality-points.geojson',
     ],
     'telecom_operators' => [
         [

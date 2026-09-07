@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\V1\BankController;
 use App\Http\Controllers\Api\V1\BusinessCalendarController;
 use App\Http\Controllers\Api\V1\ExchangeRateController;
+use App\Http\Controllers\Api\V1\GeoController;
 use App\Http\Controllers\Api\V1\HolidayController;
 use App\Http\Controllers\Api\V1\LocationController;
 use App\Http\Controllers\Api\V1\MetaController;
@@ -17,6 +18,13 @@ Route::prefix('v1')->middleware('throttle:api')->group(function (): void {
         Route::get('/municipalities', [LocationController::class, 'municipalities']);
         Route::get('/municipalities/{slug}', [LocationController::class, 'municipality']);
         Route::get('/cities', [LocationController::class, 'cities']);
+    });
+
+    Route::prefix('geo')->group(function (): void {
+        Route::get('/municipality-points', [GeoController::class, 'points']);
+        Route::get('/municipalities.geojson', [GeoController::class, 'geoJson']);
+        Route::get('/nearest', [GeoController::class, 'nearest']);
+        Route::get('/nearby', [GeoController::class, 'nearby']);
     });
 
     Route::prefix('phone')->group(function (): void {
