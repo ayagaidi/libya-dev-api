@@ -1,0 +1,12 @@
+/.phpunit.cache
+/vendor
+.env
+.env.backup
+.phpunit.result.cache
+/public/hot
+/storage/*.key
+/storage/logs/*.log
+/bootstrap/cache/*.php
+.DS_Store
+.idea
+.vscode
