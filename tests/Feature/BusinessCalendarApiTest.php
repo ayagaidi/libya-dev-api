@@ -41,8 +41,12 @@ class BusinessCalendarApiTest extends TestCase
         $this->getJson('/api/v1/calendar/business-days?from=2026-09-10&to=2026-09-16')
             ->assertOk()
             ->assertJsonPath('data.count', 4)
-            ->assertJsonPath('data.business_days.0', '2026-09-10')
-            ->assertJsonMissing(['2026-09-16']);
+            ->assertJsonPath('data.business_days', [
+                '2026-09-10',
+                '2026-09-13',
+                '2026-09-14',
+                '2026-09-15',
+            ]);
     }
 
     public function test_incomplete_future_religious_calendar_is_marked_provisional(): void
