@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.3.0] - Unreleased
+
+### Added
+- live official Central Bank of Libya exchange-rate endpoint
+- ISO currency mapping for supported CBL rows
+- preservation of published quoted units plus normalized per-unit buy/sell/average values
+- cache-backed last-good exchange-rate fallback with explicit stale metadata
+- single-currency exchange-rate lookup
+- LYD-aware currency converter using average, buy or sell columns
+- general Libya public-sector business-day analysis
+- next-business-day helper
+- inclusive business-day range helper up to 366 days
+- Sunday–Thursday workweek model with Friday/Saturday weekly rest
+- provisional confidence when a future religious-holiday calendar is incomplete
+- OpenAPI and source-provenance documentation for finance/calendar modules
+- feature tests for exchange-rate parsing, multi-unit quotes, conversion, weekends, holidays and future-calendar confidence
+
 ## [0.2.0] - 2026-09-07
 
 ### Added
