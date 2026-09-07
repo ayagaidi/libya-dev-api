@@ -16,6 +16,7 @@ class MetaController extends Controller
                 'country' => config('libya.country'),
                 'features' => [
                     'locations',
+                    'geo',
                     'phone',
                     'telecom',
                     'banks',

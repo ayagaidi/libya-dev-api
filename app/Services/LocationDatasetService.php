@@ -11,12 +11,22 @@ class LocationDatasetService
 {
     public function municipalities(): array
     {
-        return $this->fetch('municipalities', config('libya.locations.municipalities_url'));
+        return $this->fetchArray('municipalities', config('libya.locations.municipalities_url'));
     }
 
     public function cities(): array
     {
-        return $this->fetch('cities', config('libya.locations.cities_url'));
+        return $this->fetchArray('cities', config('libya.locations.cities_url'));
+    }
+
+    public function municipalityPoints(): array
+    {
+        return $this->fetchArray('municipality-points', config('libya.locations.points_url'));
+    }
+
+    public function municipalityGeoJson(): array
+    {
+        return $this->fetchObject('municipality-geojson', config('libya.locations.geojson_url'));
     }
 
     public function findMunicipality(string $slug): ?array
@@ -30,7 +40,19 @@ class LocationDatasetService
         return null;
     }
 
-    private function fetch(string $dataset, string $url): array
+    private function fetchArray(string $dataset, string $url): array
+    {
+        $data = $this->fetchJson($dataset, $url);
+
+        return array_values($data);
+    }
+
+    private function fetchObject(string $dataset, string $url): array
+    {
+        return $this->fetchJson($dataset, $url);
+    }
+
+    private function fetchJson(string $dataset, string $url): array
     {
         $version = config('libya.locations.version');
         $ttl = config('libya.locations.cache_ttl', 86400);
@@ -48,7 +70,7 @@ class LocationDatasetService
                 throw new RuntimeException("The {$dataset} dataset returned an invalid JSON payload.");
             }
 
-            return array_values($data);
+            return $data;
         });
     }
 }
