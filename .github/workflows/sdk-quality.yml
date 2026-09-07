@@ -1,0 +1,48 @@
+name: SDK Quality
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'sdks/**'
+      - '.github/workflows/sdk-quality.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'sdks/**'
+      - '.github/workflows/sdk-quality.yml'
+
+jobs:
+  javascript:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+      - run: npm test --prefix sdks/javascript
+
+  python:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONPATH: sdks/python/src
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s sdks/python/tests -v
+
+  dart:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+      - run: dart pub get
+        working-directory: sdks/dart
+      - run: dart analyze
+        working-directory: sdks/dart
+      - run: dart test
+        working-directory: sdks/dart

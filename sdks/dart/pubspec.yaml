@@ -1,0 +1,13 @@
+name: libya_dev_api
+description: Dart and Flutter client for Libya Dev API.
+version: 0.4.0
+repository: https://github.com/ayagaidi/libya-dev-api
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+
+dependencies:
+  http: ^1.2.0
+
+dev_dependencies:
+  test: ^1.25.0
