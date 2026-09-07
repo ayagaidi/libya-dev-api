@@ -15,8 +15,8 @@ class LibyaDevApiException implements Exception {
 
 class LibyaDevApi {
   LibyaDevApi({required String baseUrl, http.Client? client})
-    : baseUrl = baseUrl.replaceFirst(RegExp(r'/$'), ''),
-      _client = client ?? http.Client();
+      : baseUrl = baseUrl.replaceFirst(RegExp(r'/$'), ''),
+        _client = client ?? http.Client();
 
   final String baseUrl;
   final http.Client _client;
@@ -63,8 +63,8 @@ class LibyaDevApi {
       _request('/locations/municipalities', query: {'q': q});
 
   Future<Map<String, dynamic>> municipality(String slug) => _request(
-    '/locations/municipalities/${Uri.encodeComponent(slug)}',
-  );
+        '/locations/municipalities/${Uri.encodeComponent(slug)}',
+      );
 
   Future<Map<String, dynamic>> cities([String? q]) =>
       _request('/locations/cities', query: {'q': q});
@@ -79,25 +79,27 @@ class LibyaDevApi {
     double lat,
     double lng, {
     int limit = 5,
-  }) => _request(
-    '/geo/nearest',
-    query: {'lat': lat, 'lng': lng, 'limit': limit},
-  );
+  }) =>
+      _request(
+        '/geo/nearest',
+        query: {'lat': lat, 'lng': lng, 'limit': limit},
+      );
 
   Future<Map<String, dynamic>> nearbyMunicipalities(
     double lat,
     double lng, {
     double radiusKm = 50,
     int limit = 20,
-  }) => _request(
-    '/geo/nearby',
-    query: {
-      'lat': lat,
-      'lng': lng,
-      'radius_km': radiusKm,
-      'limit': limit,
-    },
-  );
+  }) =>
+      _request(
+        '/geo/nearby',
+        query: {
+          'lat': lat,
+          'lng': lng,
+          'radius_km': radiusKm,
+          'limit': limit,
+        },
+      );
 
   Future<Map<String, dynamic>> normalizePhone(String phone) =>
       _request('/phone/normalize', method: 'POST', body: {'phone': phone});
@@ -120,24 +122,25 @@ class LibyaDevApi {
   Future<Map<String, dynamic>> exchangeRates() => _request('/exchange-rates');
 
   Future<Map<String, dynamic>> exchangeRate(String currency) => _request(
-    '/exchange-rates/${Uri.encodeComponent(currency.toUpperCase())}',
-  );
+        '/exchange-rates/${Uri.encodeComponent(currency.toUpperCase())}',
+      );
 
   Future<Map<String, dynamic>> convertCurrency({
     required double amount,
     required String from,
     required String to,
     String rateType = 'average',
-  }) => _request(
-    '/currency/convert',
-    method: 'POST',
-    body: {
-      'amount': amount,
-      'from': from,
-      'to': to,
-      'rate_type': rateType,
-    },
-  );
+  }) =>
+      _request(
+        '/currency/convert',
+        method: 'POST',
+        body: {
+          'amount': amount,
+          'from': from,
+          'to': to,
+          'rate_type': rateType,
+        },
+      );
 
   Future<Map<String, dynamic>> isBusinessDay(String date) =>
       _request('/calendar/is-business-day', query: {'date': date});
@@ -146,9 +149,9 @@ class LibyaDevApi {
       _request('/calendar/next-business-day', query: {'date': date});
 
   Future<Map<String, dynamic>> businessDays(String from, String to) => _request(
-    '/calendar/business-days',
-    query: {'from': from, 'to': to},
-  );
+        '/calendar/business-days',
+        query: {'from': from, 'to': to},
+      );
 
   void close() => _client.close();
 }
