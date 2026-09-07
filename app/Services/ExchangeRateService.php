@@ -5,6 +5,7 @@ namespace App\Services;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use RuntimeException;
+use Throwable;
 
 class ExchangeRateService
 {
@@ -89,7 +90,12 @@ class ExchangeRateService
     private function fetchFresh(): array
     {
         $sourceUrl = (string) config('libya_exchange.source_url');
-        $response = Http::accept('text/html')->timeout(10)->retry(2, 250)->get($sourceUrl);
+
+        try {
+            $response = Http::accept('text/html')->timeout(10)->retry(2, 250)->get($sourceUrl);
+        } catch (Throwable $exception) {
+            throw new RuntimeException('Central Bank of Libya exchange-rate source is unavailable.', 0, $exception);
+        }
 
         if (! $response->successful()) {
             throw new RuntimeException('Central Bank of Libya exchange-rate source is unavailable.');
