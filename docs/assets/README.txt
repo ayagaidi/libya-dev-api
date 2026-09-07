@@ -1,1 +1,0 @@
-README assets live in this directory.
