@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.4.0] - Unreleased
+## [0.4.0] - 2026-09-07
 
 ### Added
 - municipality point endpoint backed by pinned Libya Locations v1.2.0 data
