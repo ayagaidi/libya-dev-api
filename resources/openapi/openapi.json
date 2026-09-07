@@ -1,0 +1,26 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Libya Dev API",
+    "version": "0.1.0",
+    "description": "Open developer API for Libya. All endpoints are language-agnostic HTTP/JSON interfaces."
+  },
+  "servers": [{"url": "/api/v1", "description": "Current host"}],
+  "tags": [
+    {"name": "Meta"}, {"name": "Locations"}, {"name": "Phone"}, {"name": "Telecom"}
+  ],
+  "paths": {
+    "/meta": {"get": {"tags":["Meta"],"summary":"API and Libya metadata","responses":{"200":{"description":"OK"}}}},
+    "/locations/municipalities": {"get": {"tags":["Locations"],"summary":"List Libyan municipalities","parameters":[{"name":"q","in":"query","schema":{"type":"string"},"description":"Search Arabic name, English name or slug"}],"responses":{"200":{"description":"Municipality collection"},"503":{"description":"Pinned source unavailable"}}}},
+    "/locations/municipalities/{slug}": {"get": {"tags":["Locations"],"summary":"Get municipality by stable slug","parameters":[{"name":"slug","in":"path","required":true,"schema":{"type":"string"}}],"responses":{"200":{"description":"Municipality"},"404":{"description":"Not found"}}}},
+    "/locations/cities": {"get": {"tags":["Locations"],"summary":"List Libyan cities/places","parameters":[{"name":"q","in":"query","schema":{"type":"string"}}],"responses":{"200":{"description":"City collection"}}}},
+    "/phone/normalize": {"post": {"tags":["Phone"],"summary":"Normalize a Libyan mobile number","requestBody":{"required":true,"content":{"application/json":{"schema":{"$ref":"#/components/schemas/PhoneInput"}}}},"responses":{"200":{"description":"Normalized number"},"422":{"description":"Validation error"}}}},
+    "/phone/validate": {"post": {"tags":["Phone"],"summary":"Validate and identify a known Libyan mobile number range","requestBody":{"required":true,"content":{"application/json":{"schema":{"$ref":"#/components/schemas/PhoneInput"}}}},"responses":{"200":{"description":"Validation result"}}}},
+    "/telecom/operators": {"get": {"tags":["Telecom"],"summary":"List mobile operator prefix metadata and sources","responses":{"200":{"description":"Operators"}}}}
+  },
+  "components": {
+    "schemas": {
+      "PhoneInput": {"type":"object","required":["phone"],"properties":{"phone":{"type":"string","examples":["0912345678","+218912345678"]}}}
+    }
+  }
+}
