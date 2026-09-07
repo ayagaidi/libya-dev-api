@@ -1,0 +1,64 @@
+name: Deployment Quality
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'Dockerfile'
+      - '.dockerignore'
+      - 'docker/**'
+      - 'railway.json'
+      - 'routes/web.php'
+      - 'composer.json'
+      - 'composer.lock'
+      - '.github/workflows/deployment-quality.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'Dockerfile'
+      - '.dockerignore'
+      - 'docker/**'
+      - 'railway.json'
+      - 'routes/web.php'
+      - 'composer.json'
+      - 'composer.lock'
+      - '.github/workflows/deployment-quality.yml'
+
+jobs:
+  container-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Build production container
+        run: docker build -t libya-dev-api:ci .
+      - name: Start container
+        run: |
+          APP_KEY="base64:$(openssl rand -base64 32)"
+          docker run -d --name libya-dev-api-ci -p 8080:8080 \
+            -e APP_KEY="$APP_KEY" \
+            -e APP_ENV=testing \
+            -e APP_DEBUG=false \
+            -e LOG_CHANNEL=stderr \
+            -e CACHE_STORE=file \
+            libya-dev-api:ci
+      - name: Verify health and public contracts
+        run: |
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent --show-error http://127.0.0.1:8080/health >/tmp/health.json; then
+              break
+            fi
+            if [ "$attempt" -eq 30 ]; then
+              docker logs libya-dev-api-ci
+              exit 1
+            fi
+            sleep 2
+          done
+          grep -q '"status":"ok"' /tmp/health.json
+          curl --fail --silent --show-error http://127.0.0.1:8080/api/v1/meta | grep -q 'Libya Dev API'
+          curl --fail --silent --show-error http://127.0.0.1:8080/openapi.json | grep -q '"openapi"'
+      - name: Container logs on failure
+        if: failure()
+        run: docker logs libya-dev-api-ci || true
+      - name: Stop container
+        if: always()
+        run: docker rm -f libya-dev-api-ci || true
