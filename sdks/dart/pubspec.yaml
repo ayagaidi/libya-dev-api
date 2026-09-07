@@ -1,7 +1,9 @@
 name: libya_dev_api
-description: Dart and Flutter client for Libya Dev API.
+description: Dart and Flutter client for Libya Dev API, including locations, Geo, telecom, banks, holidays, exchange rates, and calendar helpers.
 version: 0.4.0
+homepage: https://github.com/ayagaidi/libya-dev-api
 repository: https://github.com/ayagaidi/libya-dev-api
+issue_tracker: https://github.com/ayagaidi/libya-dev-api/issues
 
 environment:
   sdk: '>=3.3.0 <4.0.0'
