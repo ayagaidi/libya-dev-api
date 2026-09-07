@@ -5,9 +5,22 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "libya-dev-api-client"
 version = "0.4.0"
-description = "Python client for Libya Dev API"
+description = "Python client for Libya Dev API, including locations, Geo, telecom, banks, holidays, exchange rates and business-calendar helpers."
+readme = "README.md"
 requires-python = ">=3.9"
 license = {text = "MIT"}
+authors = [{name = "Aya Aljaidi"}]
+keywords = ["libya", "api", "geo", "telecom", "banks", "exchange-rates", "developer-tools"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent"
+]
+
+[project.urls]
+Homepage = "https://github.com/ayagaidi/libya-dev-api"
+Repository = "https://github.com/ayagaidi/libya-dev-api"
+Issues = "https://github.com/ayagaidi/libya-dev-api/issues"
 
 [tool.setuptools.packages.find]
 where = ["src"]
