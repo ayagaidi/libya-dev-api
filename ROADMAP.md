@@ -9,16 +9,24 @@
 - [x] Rate limiting, caching, CORS
 - [x] Tests + CI
 
-## v0.2 — Location developer experience
+## v0.2 — Libya business + calendar primitives
+- [x] commercial bank directory from the Central Bank of Libya
+- [x] Arabic/English bank search and stable slugs
+- [x] public-holiday definitions from Law No. 5 of 2012
+- [x] sourced 2026 religious-holiday dates
+- [x] explicit `requires_annual_confirmation` status instead of guessing future religious dates
+- [x] OpenAPI and regression tests for banks/holidays
+
+## v0.3 — Location developer experience
 - municipality map points and GeoJSON proxy endpoints
 - bounding-box / nearby helpers where source quality permits
 - conditional requests / ETags for public datasets
 - SDK snippets generated from OpenAPI
 
-## v0.3 — Libya business primitives
-- bank directory from maintainable official sources
-- public-holiday module with source/year metadata
+## v0.4 — More Libya developer primitives
 - currency/IBAN helpers only where official validation rules are available
+- bank branch/routing metadata only if a maintainable primary source exists
+- government/administrative identifiers only where publication is appropriate and source-backed
 
 ## Later
 - postal/address normalization if a reliable source exists
