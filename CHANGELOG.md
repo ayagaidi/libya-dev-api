@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.2.0] - Unreleased
+## [0.2.0] - 2026-09-07
 
 ### Added
 - source-backed commercial bank directory from the Central Bank of Libya
