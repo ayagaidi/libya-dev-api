@@ -1,14 +1,39 @@
 {
   "name": "libya-dev-api-client",
   "version": "0.4.0",
-  "description": "JavaScript client for Libya Dev API",
+  "description": "JavaScript client for Libya Dev API, including locations, Geo, telecom, banks, holidays, exchange rates and business-calendar helpers.",
   "type": "module",
   "exports": "./src/index.js",
+  "files": [
+    "src",
+    "README.md"
+  ],
   "scripts": {
     "test": "node --test"
   },
   "engines": {
     "node": ">=18"
+  },
+  "keywords": [
+    "libya",
+    "api",
+    "geo",
+    "telecom",
+    "banks",
+    "exchange-rates",
+    "developer-tools"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ayagaidi/libya-dev-api.git",
+    "directory": "sdks/javascript"
+  },
+  "homepage": "https://github.com/ayagaidi/libya-dev-api#readme",
+  "bugs": {
+    "url": "https://github.com/ayagaidi/libya-dev-api/issues"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "license": "MIT"
 }
