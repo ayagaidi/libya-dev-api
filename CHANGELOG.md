@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.2.0] - Unreleased
+
+### Added
+- source-backed commercial bank directory from the Central Bank of Libya
+- 26 bank records with stable slugs, Arabic/English names, city and website
+- bank search by Arabic/English name, city or stable slug
+- bank lookup endpoint by slug
+- public-holiday calendar based on Law No. 5 of 2012
+- sourced 2026 confirmations for Eid al-Fitr, Arafah/Eid al-Adha, Hijri New Year and the Prophet's Birthday
+- explicit `requires_annual_confirmation` handling for future religious dates
+- bank and holiday OpenAPI documentation
+- feature tests for bank search/filtering and holiday integrity
+
 ## [0.1.0] - 2026-09-07
 
 ### Added
