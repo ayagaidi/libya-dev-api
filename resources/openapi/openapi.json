@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Libya Dev API",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "description": "Open developer API for Libya. All endpoints are language-agnostic HTTP/JSON interfaces."
   },
   "servers": [{"url": "/api/v1", "description": "Current host"}],
@@ -12,7 +12,9 @@
     {"name": "Phone"},
     {"name": "Telecom"},
     {"name": "Banks"},
-    {"name": "Holidays"}
+    {"name": "Holidays"},
+    {"name": "Exchange Rates"},
+    {"name": "Calendar"}
   ],
   "paths": {
     "/meta": {"get": {"tags":["Meta"],"summary":"API and Libya metadata","responses":{"200":{"description":"OK"}}}},
@@ -25,11 +27,18 @@
     "/banks": {"get": {"tags":["Banks"],"summary":"List commercial banks from the Central Bank of Libya directory","parameters":[{"name":"q","in":"query","schema":{"type":"string"},"description":"Search Arabic name, English name, city or stable slug"},{"name":"city","in":"query","schema":{"type":"string"},"description":"Filter by Arabic or English city name"}],"responses":{"200":{"description":"Bank collection"}}}},
     "/banks/{slug}": {"get": {"tags":["Banks"],"summary":"Get a bank by stable slug","parameters":[{"name":"slug","in":"path","required":true,"schema":{"type":"string"}}],"responses":{"200":{"description":"Bank"},"404":{"description":"Not found"}}}},
     "/holidays": {"get": {"tags":["Holidays"],"summary":"Get the Libya holiday calendar for the current Tripoli year","responses":{"200":{"description":"Holiday calendar"}}}},
-    "/holidays/{year}": {"get": {"tags":["Holidays"],"summary":"Get the Libya holiday calendar for a year","parameters":[{"name":"year","in":"path","required":true,"schema":{"type":"integer","minimum":1900,"maximum":2100}}],"responses":{"200":{"description":"Holiday calendar"},"422":{"description":"Invalid year"}}}}
+    "/holidays/{year}": {"get": {"tags":["Holidays"],"summary":"Get the Libya holiday calendar for a year","parameters":[{"name":"year","in":"path","required":true,"schema":{"type":"integer","minimum":1900,"maximum":2100}}],"responses":{"200":{"description":"Holiday calendar"},"422":{"description":"Invalid year"}}}},
+    "/exchange-rates": {"get": {"tags":["Exchange Rates"],"summary":"Get current official Central Bank of Libya exchange rates","responses":{"200":{"description":"CBL exchange-rate collection"},"503":{"description":"CBL source unavailable and no cached last-good data exists"}}}},
+    "/exchange-rates/{currency}": {"get": {"tags":["Exchange Rates"],"summary":"Get one CBL exchange-rate record by ISO currency code","parameters":[{"name":"currency","in":"path","required":true,"schema":{"type":"string","minLength":3,"maxLength":3},"example":"USD"}],"responses":{"200":{"description":"Exchange rate"},"404":{"description":"Currency not mapped"},"503":{"description":"Source unavailable"}}}},
+    "/currency/convert": {"post": {"tags":["Exchange Rates"],"summary":"Convert between LYD and supported CBL currencies using average, buy or sell rates","requestBody":{"required":true,"content":{"application/json":{"schema":{"$ref":"#/components/schemas/CurrencyConversionInput"}}}},"responses":{"200":{"description":"Conversion result"},"422":{"description":"Validation or unsupported currency error"},"503":{"description":"Source unavailable"}}}},
+    "/calendar/is-business-day": {"get": {"tags":["Calendar"],"summary":"Check whether a date is a general Libya public-sector business day","parameters":[{"name":"date","in":"query","required":true,"schema":{"type":"string","format":"date"}}],"responses":{"200":{"description":"Business-day analysis"},"422":{"description":"Invalid date"}}}},
+    "/calendar/next-business-day": {"get": {"tags":["Calendar"],"summary":"Find the next general Libya public-sector business day after a date","parameters":[{"name":"date","in":"query","required":true,"schema":{"type":"string","format":"date"}}],"responses":{"200":{"description":"Next business day"},"422":{"description":"Invalid date"}}}},
+    "/calendar/business-days": {"get": {"tags":["Calendar"],"summary":"List business days in an inclusive range up to 366 days","parameters":[{"name":"from","in":"query","required":true,"schema":{"type":"string","format":"date"}},{"name":"to","in":"query","required":true,"schema":{"type":"string","format":"date"}}],"responses":{"200":{"description":"Business-day range"},"422":{"description":"Invalid or oversized date range"}}}}
   },
   "components": {
     "schemas": {
-      "PhoneInput": {"type":"object","required":["phone"],"properties":{"phone":{"type":"string","examples":["0912345678","+218912345678"]}}}
+      "PhoneInput": {"type":"object","required":["phone"],"properties":{"phone":{"type":"string","examples":["0912345678","+218912345678"]}}},
+      "CurrencyConversionInput": {"type":"object","required":["amount","from","to"],"properties":{"amount":{"type":"number","minimum":0,"example":100},"from":{"type":"string","example":"USD"},"to":{"type":"string","example":"LYD"},"rate_type":{"type":"string","enum":["average","buy","sell"],"default":"average"}}}
     }
   }
 }
