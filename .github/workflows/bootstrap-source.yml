@@ -1,0 +1,40 @@
+name: Bootstrap v0.1 source
+
+on:
+  push:
+    branches: [feat/v0.1-foundation]
+    paths:
+      - '.bootstrap/ready'
+
+permissions:
+  contents: write
+
+jobs:
+  bootstrap:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out bootstrap branch
+        uses: actions/checkout@v7
+        with:
+          ref: feat/v0.1-foundation
+
+      - name: Rebuild source package
+        run: |
+          cat .bootstrap/chunk-* > /tmp/libya-dev-api.b64
+          base64 --decode /tmp/libya-dev-api.b64 > /tmp/libya-dev-api.zip
+          rm -rf /tmp/libya-dev-api-source
+          mkdir -p /tmp/libya-dev-api-source
+          unzip -q /tmp/libya-dev-api.zip -d /tmp/libya-dev-api-source
+          rsync -a --delete \
+            --exclude '.git/' \
+            --exclude '.bootstrap/' \
+            /tmp/libya-dev-api-source/ ./
+          rm -rf .bootstrap
+
+      - name: Commit source tree
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "feat: add Libya Dev API v0.1 foundation"
+          git push origin HEAD:feat/v0.1-foundation
