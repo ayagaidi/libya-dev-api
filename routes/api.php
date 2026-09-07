@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\V1\BankController;
+use App\Http\Controllers\Api\V1\HolidayController;
 use App\Http\Controllers\Api\V1\LocationController;
 use App\Http\Controllers\Api\V1\MetaController;
 use App\Http\Controllers\Api\V1\PhoneController;
@@ -21,4 +23,10 @@ Route::prefix('v1')->middleware('throttle:api')->group(function (): void {
     });
 
     Route::get('/telecom/operators', [TelecomController::class, 'operators']);
+
+    Route::get('/banks', [BankController::class, 'index']);
+    Route::get('/banks/{slug}', [BankController::class, 'show']);
+
+    Route::get('/holidays', [HolidayController::class, 'index']);
+    Route::get('/holidays/{year}', [HolidayController::class, 'year'])->whereNumber('year');
 });
