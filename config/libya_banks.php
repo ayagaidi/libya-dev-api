@@ -1,0 +1,38 @@
+<?php
+
+return [
+    'source' => [
+        'name' => 'Central Bank of Libya — Commercial Banks Directory',
+        'url' => 'https://cbl.gov.ly/banks/',
+        'checked_at' => '2026-09-07',
+        'verification' => 'current_primary_source',
+    ],
+    'banks' => [
+        ['slug' => 'national-union-bank', 'name_ar' => 'مصرف الاتحاد الوطني', 'name_en' => 'National Union Bank', 'city_en' => 'Benghazi', 'city_ar' => 'بنغازي', 'website' => 'https://nubank.ly/wp/'],
+        ['slug' => 'imaar-bank', 'name_ar' => 'مصرف إعمار', 'name_en' => 'Imaar Bank', 'city_en' => 'Benghazi', 'city_ar' => 'بنغازي', 'website' => 'https://imaarbank.ly/'],
+        ['slug' => 'islamic-finance-bank', 'name_ar' => 'مصرف التمويل الإسلامي', 'name_en' => 'Islamic Finance Bank', 'city_en' => 'Benghazi', 'city_ar' => 'بنغازي', 'website' => 'https://ifb.ly/'],
+        ['slug' => 'daman-islamic-bank', 'name_ar' => 'مصرف الضمان الإسلامي', 'name_en' => 'Daman Islamic Bank', 'city_en' => 'Benghazi', 'city_ar' => 'بنغازي', 'website' => 'https://dib.ly/'],
+        ['slug' => 'al-seraj-islamic-bank', 'name_ar' => 'مصرف السراج الإسلامي', 'name_en' => 'Al Seraj Islamic Bank', 'city_en' => 'Benghazi', 'city_ar' => 'بنغازي', 'website' => 'https://www.sib.com.ly/'],
+        ['slug' => 'arab-islamic-investment-bank', 'name_ar' => 'مصرف الإستثمار العربي الإسلامي', 'name_en' => 'Arab Islamic Investment Bank', 'city_en' => 'Tripoli', 'city_ar' => 'طرابلس', 'website' => 'https://www.aiib.ly/'],
+        ['slug' => 'jumhouria-bank', 'name_ar' => 'مصرف الجمهورية', 'name_en' => 'Jumhouria Bank', 'city_en' => 'Tripoli', 'city_ar' => 'طرابلس', 'website' => 'https://www.jbank.ly/'],
+        ['slug' => 'national-commercial-bank', 'name_ar' => 'المصرف التجاري الوطني', 'name_en' => 'National Commercial Bank', 'city_en' => 'Al Bayda', 'city_ar' => 'البيضاء', 'website' => 'https://www.ncb.ly/'],
+        ['slug' => 'wahda-bank', 'name_ar' => 'مصرف الوحدة', 'name_en' => 'Wahda Bank', 'city_en' => 'Benghazi', 'city_ar' => 'بنغازي', 'website' => 'https://wahdabank.com.ly/'],
+        ['slug' => 'sahara-bank', 'name_ar' => 'مصرف الصحارى', 'name_en' => 'Sahara Bank', 'city_en' => 'Tripoli', 'city_ar' => 'طرابلس', 'website' => 'https://www.saharabank.ly/'],
+        ['slug' => 'bank-of-commerce-and-development', 'name_ar' => 'مصرف التجارة والتنمية', 'name_en' => 'Bank of Commerce & Development', 'city_en' => 'Benghazi', 'city_ar' => 'بنغازي', 'website' => 'https://www.bcd.ly/'],
+        ['slug' => 'north-africa-bank', 'name_ar' => 'مصرف شمال أفريقيا', 'name_en' => 'North Africa Bank', 'city_en' => 'Tripoli', 'city_ar' => 'طرابلس', 'website' => 'https://www.nab.ly/'],
+        ['slug' => 'aman-bank', 'name_ar' => 'مصرف الامان للتجارة والاستثمار', 'name_en' => 'Aman Bank', 'city_en' => 'Tripoli', 'city_ar' => 'طرابلس', 'website' => 'https://www.aman-bank.com/'],
+        ['slug' => 'alejmaa-alarabi-bank', 'name_ar' => 'مصرف الأجماع العربي', 'name_en' => 'Alejma’a Alarabi Bank', 'city_en' => 'Benghazi', 'city_ar' => 'بنغازي', 'website' => 'https://ejmaa.aabank.ly/'],
+        ['slug' => 'libyan-foreign-bank', 'name_ar' => 'المصرف الليبي الخارجي', 'name_en' => 'Libyan Foreign Bank', 'city_en' => 'Tripoli', 'city_ar' => 'طرابلس', 'website' => 'https://www.lfb.ly/'],
+        ['slug' => 'first-gulf-libyan-bank', 'name_ar' => 'مصرف الخليج الأول الليبي', 'name_en' => 'First Gulf Libyan Bank', 'city_en' => 'Tripoli', 'city_ar' => 'طرابلس', 'website' => 'https://www.bankfab.com/ar-ly/'],
+        ['slug' => 'alwaha-bank', 'name_ar' => 'مصرف الواحة', 'name_en' => 'Alwaha Bank', 'city_en' => 'Tripoli', 'city_ar' => 'طرابلس', 'website' => 'https://www.alwahabank.ly/'],
+        ['slug' => 'united-bank-for-commerce-and-investment', 'name_ar' => 'المصرف المتحد للتجارة والاستثمار', 'name_en' => 'United Bank for Commerce & Investment', 'city_en' => 'Tripoli', 'city_ar' => 'طرابلس', 'website' => 'https://www.ubci-libya.com/'],
+        ['slug' => 'assaray-trade-and-investment-bank', 'name_ar' => 'مصرف السراي للتجارة والاستثمار', 'name_en' => 'Assaray Trade and Investment Bank', 'city_en' => 'Tripoli', 'city_ar' => 'طرابلس', 'website' => 'https://atib.ly/'],
+        ['slug' => 'mediterranean-bank', 'name_ar' => 'مصرف المتوسط', 'name_en' => 'Mediterranean Bank', 'city_en' => 'Benghazi', 'city_ar' => 'بنغازي', 'website' => 'https://www.meditbank.ly/'],
+        ['slug' => 'nuran-bank', 'name_ar' => 'مصرف النوران', 'name_en' => 'Nuran Bank', 'city_en' => 'Tripoli', 'city_ar' => 'طرابلس', 'website' => 'https://www.nub.ly/'],
+        ['slug' => 'alwafa-bank', 'name_ar' => 'مصرف الوفاء', 'name_en' => 'Alwafa Bank', 'city_en' => 'Tripoli', 'city_ar' => 'طرابلس', 'website' => 'https://www.alwafabank.com/'],
+        ['slug' => 'tadhamon-bank', 'name_ar' => 'مصرف التضامن', 'name_en' => 'Tadhamon Bank', 'city_en' => 'Tripoli', 'city_ar' => 'طرابلس', 'website' => 'https://www.tab.ly/'],
+        ['slug' => 'libyan-islamic-bank', 'name_ar' => 'المصرف الإسلامي الليبي', 'name_en' => 'Libyan Islamic Bank', 'city_en' => 'Tripoli', 'city_ar' => 'طرابلس', 'website' => 'https://www.lib.com.ly/'],
+        ['slug' => 'yaqeen-bank', 'name_ar' => 'مصرف اليقين', 'name_en' => 'Yaqeen Bank', 'city_en' => 'Tripoli', 'city_ar' => 'طرابلس', 'website' => 'https://www.yaqeenbank.ly/'],
+        ['slug' => 'andalus-bank', 'name_ar' => 'مصرف الأندلس', 'name_en' => 'Andalus Bank', 'city_en' => 'Tripoli', 'city_ar' => 'طرابلس', 'website' => 'https://www.andalusbank.com/'],
+    ],
+];

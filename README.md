@@ -4,7 +4,7 @@
 
 # Libya Dev API 🇱🇾
 
-> **The open developer API for Libya.** One stable HTTP/JSON interface for Libya-specific locations, phone normalization, telecom metadata and future developer primitives.
+> **The open developer API for Libya.** One stable HTTP/JSON interface for Libya-specific locations, phone normalization, telecom metadata, banks and public holidays.
 
 [![Release](https://img.shields.io/github/v/release/ayagaidi/libya-dev-api?label=release)](https://github.com/ayagaidi/libya-dev-api/releases/latest)
 [![Laravel Quality](https://github.com/ayagaidi/libya-dev-api/actions/workflows/tests.yml/badge.svg)](https://github.com/ayagaidi/libya-dev-api/actions/workflows/tests.yml)
@@ -14,13 +14,18 @@
 
 Libya Dev API is API-first: Laravel powers the backend, but consumers do **not** need PHP or Laravel. Any language that can make an HTTP request can integrate it.
 
-## v0.1 scope
+## Current scope
 
 - Libyan municipalities and cities through the pinned `Libya Locations v1.2.0` dataset
 - search by Arabic name, English name or stable slug
 - Libyan mobile phone normalization (`091...`, `+21891...`, `0021891...`)
 - mobile format and known-prefix validation
 - telecom operator prefix metadata with explicit source provenance and verification strength
+- **26-bank commercial bank directory from the Central Bank of Libya**
+- bank search by Arabic/English name, city or stable slug
+- **Libya public-holiday calendar** based on Law No. 5 of 2012
+- confirmed 2026 religious holiday dates with annual decision/source metadata
+- future religious dates intentionally returned as `null` until officially confirmed
 - OpenAPI 3.1 contract at `/openapi.json`
 - interactive Swagger UI at `/docs`
 - public CORS, API rate limiting and cache-backed source retrieval
@@ -72,8 +77,34 @@ Example response:
 | POST | `/api/v1/phone/normalize` | normalize a Libyan mobile number |
 | POST | `/api/v1/phone/validate` | validate format + known operator range |
 | GET | `/api/v1/telecom/operators` | operator prefixes + provenance |
+| GET | `/api/v1/banks` | commercial banks, optional `?q=` / `?city=` |
+| GET | `/api/v1/banks/{slug}` | bank by stable slug |
+| GET | `/api/v1/holidays` | current-year holiday calendar in `Africa/Tripoli` |
+| GET | `/api/v1/holidays/{year}` | holiday calendar for a specific year |
 | GET | `/openapi.json` | OpenAPI contract |
 | GET | `/docs` | interactive API documentation |
+
+## Banks example
+
+```bash
+curl 'http://localhost:8000/api/v1/banks?q=النوران'
+```
+
+Bank records expose a stable slug, Arabic/English name, city, website and source metadata. The directory is sourced from the Central Bank of Libya rather than crowdsourced guesses.
+
+## Holidays example
+
+```bash
+curl 'http://localhost:8000/api/v1/holidays/2026'
+```
+
+The holiday module distinguishes between:
+
+- `confirmed_official_decision` — an annual date has a sourced official decision/announcement
+- `statutory_fixed_date` — the Gregorian date is fixed by the official-holidays law
+- `requires_annual_confirmation` — a religious date is intentionally not guessed for that year
+
+The API does not infer substitute days, bridge leave or administrative extensions unless an explicit source is recorded.
 
 ## Language-agnostic integration
 
@@ -127,13 +158,7 @@ http://localhost:8000/docs
 
 ## Data provenance
 
-Locations are read from the version-pinned open dataset:
-
-- `ayagaidi/libyancityseeds` — `v1.2.0`
-- 141 municipalities
-- Arabic/English names and stable slugs
-
-Telecom prefix metadata records source URLs and verification strength in the API response. High-confidence current ranges in v0.1 are `091/093` (Almadar) and `092/094` (Libyana). `095` is retained with an explicitly weaker historical/current-operator-reference status rather than presented as equally current evidence.
+Locations are read from the version-pinned open dataset `ayagaidi/libyancityseeds` (`v1.2.0`). Telecom prefix metadata carries source URLs and verification strength. Bank records are based on the Central Bank of Libya commercial-bank directory. Holiday definitions come from Law No. 5 of 2012, while floating religious dates are only populated for a year when a source is available.
 
 See [`DATA_SOURCES.md`](DATA_SOURCES.md).
 
@@ -143,7 +168,7 @@ See [`DATA_SOURCES.md`](DATA_SOURCES.md).
 2. **Stable versioned API.** Breaking changes require a new API version.
 3. **Language agnostic.** HTTP + JSON + OpenAPI are the contract.
 4. **Source provenance.** Country-specific metadata should point to its source.
-5. **Small core, useful modules.** Add banks, holidays, postal/address helpers and other modules only with maintainable sources.
+5. **Small core, useful modules.** New primitives are added only when a maintainable source and clear developer use case exist.
 
 ## Roadmap
 

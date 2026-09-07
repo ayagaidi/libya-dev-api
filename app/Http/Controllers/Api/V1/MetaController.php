@@ -14,7 +14,7 @@ class MetaController extends Controller
                 'name' => 'Libya Dev API',
                 'api_version' => config('libya.api_version'),
                 'country' => config('libya.country'),
-                'features' => ['locations', 'phone', 'telecom'],
+                'features' => ['locations', 'phone', 'telecom', 'banks', 'holidays'],
                 'documentation' => url('/docs'),
                 'openapi' => url('/openapi.json'),
             ],
